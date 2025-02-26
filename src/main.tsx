@@ -12,7 +12,9 @@ import Error from "./components/pages/error.js";
 const AppLayout = () => {
   return (
     <>
-      <Header />
+      <div className="min-h-screen bg-zinc-900">
+        <Header/>
+      </div>
     </>
   );
 };

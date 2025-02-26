@@ -7,12 +7,10 @@ import { Link } from 'react-router-dom'
 export const Header = () => {
   const [searchQuery, setSearchQuery] = useState("")
   return (
-    <div className='bg-zinc-900'><header className="border-b border-zinc-800">
+    <header className="border-b border-zinc-800">
     <div className="container mx-auto px-4">
       <div className="flex h-16 items-center justify-between text-xl font-bold text-white">
-        {/* <Link href="/" className="text-xl font-bold text-white">
-          MovieDb
-        </Link> */}
+        
         <Link to="/">MovieDb</Link>
 
         <nav className="hidden space-x-6 md:flex">
@@ -42,6 +40,6 @@ export const Header = () => {
         </div>
       </div>
     </div>
-  </header></div>
+  </header>
   )
 }

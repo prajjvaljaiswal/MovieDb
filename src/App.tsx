@@ -1,12 +1,14 @@
-import { useState } from 'react';
-import {Header} from "./components/Header.tsx"
+import { useEffect } from "react"
 
 function App() {
   // const [count, setCount] = useState(0)
+  useEffect(()=>{
+    console.log("useEffect")
+  },[])
 
   return (
-    <div className='min-h-screen bg-zinc-900'>
-       <Header/>
+    <div className='text-white'>
+      App
     </div>
   )
 }
