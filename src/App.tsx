@@ -1,13 +1,13 @@
-import { useEffect } from "react"
+import { Header } from "./components/Header"
+
 
 function App() {
   // const [count, setCount] = useState(0)
-  useEffect(()=>{
-    console.log("useEffect")
-  },[])
+ 
 
   return (
-    <div className='text-white'>
+    <div className='min-h-screen bg-zinc-900 text-white'>
+      <Header/>
       App
     </div>
   )

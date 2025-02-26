@@ -1,9 +1,12 @@
-import React from 'react'
+import { Header } from "../Header";
 
 const Upcoming = () => {
   return (
-    <div>upcoming</div>
-  )
-}
+    <div className="min-h-screen bg-zinc-900 text-white">
+      <Header />
+      Upcomming
+    </div>
+  );
+};
 
-export default Upcoming
+export default Upcoming;

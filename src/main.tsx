@@ -8,45 +8,46 @@ import TopRated from "./components/pages/topRated.js";
 import Upcoming from "./components/pages/upcoming.js";
 import { Header } from "./components/Header.js";
 import Error from "./components/pages/error.js";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore.js";
 
-const AppLayout = () => {
-  return (
-    <>
-      <div className="min-h-screen bg-zinc-900">
-        <Header/>
-      </div>
-    </>
-  );
-};
+// const AppLayout = () => {
+//   return (
+//     <>
+//       <div className="bg-zinc-900">
+//         <Header/>
+//       </div>
+//     </>
+//   );
+// };
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <AppLayout />,
-    errorElement: <Error />,
-    children: [
-      {
-        path: "/",
-        element: <App />,
-      },
-      {
-        path: "/popular",
-        element: <Populer />,
-      },
-      {
-        path: "/top-rated",
-        element: <TopRated />,
-      },
-      {
-        path: "/upcoming",
-        element: <Upcoming />,
-      },
-    ],
+    element: <App />,
+    errorElement: <Error />
+  },
+  {
+    path: "/popular",
+    element: <Populer />,
+    errorElement: <Error />
+  },
+  {
+    path: "/top-rated",
+    element: <TopRated />,
+    errorElement: <Error />
+  },
+  {
+    path: "/upcoming",
+    element: <Upcoming />,
+    errorElement: <Error />
   },
 ]);
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+   <Provider store={appStore}>
+        <RouterProvider router={router}/>
+      </Provider>
   </StrictMode>
 );
