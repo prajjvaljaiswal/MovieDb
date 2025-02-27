@@ -6,7 +6,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Populer from "./components/pages/populer.js";
 import TopRated from "./components/pages/topRated.js";
 import Upcoming from "./components/pages/upcoming.js";
-import { Header } from "./components/Header.js";
 import Error from "./components/pages/error.js";
 import { Provider } from "react-redux";
 import appStore from "./utils/appStore.js";

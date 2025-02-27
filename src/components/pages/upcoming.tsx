@@ -3,9 +3,12 @@ import { Header } from "../Header";
 import MovieCard from "@/components/pages/DmovieCard";
 import { RootState } from "@/utils/appStore";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const Upcoming = () => {
-  useUpcomingMovies()
+  useEffect(()=>{
+    useUpcomingMovies()
+  },[])
   const movies = useSelector((state: RootState) => state.movie.upComingMovies);
   if(!movies){
     return

@@ -3,9 +3,9 @@ import React from "react";
 interface MovieProps {
   movie: {
     id: number;
-    title: string;
-    poster_path: string;
-    vote_average: number;
+    title?: string;
+    poster_path?: string;
+    vote_average?: number;
   };
 }
 
