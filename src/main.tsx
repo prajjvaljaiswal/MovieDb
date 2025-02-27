@@ -10,16 +10,7 @@ import MovieDetail from "./components/pages/movieDetail.js";
 import Error from "./components/pages/error.js";
 import { Provider } from "react-redux";
 import appStore from "./utils/appStore.js";
-
-// const AppLayout = () => {
-//   return (
-//     <>
-//       <div className="bg-zinc-900">
-//         <Header/>
-//       </div>
-//     </>
-//   );
-// };
+import Browse from "./components/pages/Browse.js";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +35,10 @@ const router = createBrowserRouter([
   },{
     path: "/movie/:id",
     element: <MovieDetail/>,
+    errorElement: <Error/>
+  },{
+    path: "/browse/:name",
+    element:<Browse/>,
     errorElement: <Error/>
   }
 ]);

@@ -2,13 +2,6 @@ import React from "react";
 import { Movie } from "@/type/movie";
 import { useNavigate } from "react-router-dom";
 
-
-// type movie = {
-//   id: number;
-//   title?: string;
-//   poster_path?: string;
-//   vote_average?: number;
-// };
 interface MovieProps {
   movie: Movie
 }
@@ -31,7 +24,7 @@ const MovieCard: React.FC<MovieProps> = ({ movie }) => {
         />
       </div>
       <h2 className="text-center text-sm font-medium text-white">{movie.title}</h2>
-      <div className="text-center text-sm text-zinc-400">Rating: {movie.vote_average}</div>
+      <div className="text-center text-sm text-zinc-400">Rating: {movie.vote_average?.toFixed(1)}</div>
     </div>
   );
 };

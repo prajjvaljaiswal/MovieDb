@@ -2,10 +2,14 @@ import { Button } from '@/components/ui/button'
 import {Input} from '@/components/ui/input'
 import { Search } from 'lucide-react'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export const Header = () => {
   const [searchQuery, setSearchQuery] = useState("")
+  const navigate = useNavigate()
+  const handelSearch = ()=>{
+    navigate(`/browse/${searchQuery}`)
+  }
   return (
     <header className="border-b border-zinc-800">
     <div className="container mx-auto px-4">
@@ -33,7 +37,7 @@ export const Header = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-[200px] bg-zinc-800 text-white placeholder:text-zinc-400 focus-visible:ring-zinc-700"
           />
-          <Button variant="secondary" size="icon">
+          <Button variant="secondary" size="icon" onClick={handelSearch}>
             <Search className="h-4 w-4" />
             <span className="sr-only">Search</span>
           </Button>
