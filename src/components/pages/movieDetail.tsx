@@ -1,18 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Header } from "../Header";
-import { Movie, Cast } from "@/type/movie";
+import { Movie } from "@/type/movie";
 import { Clock, Calendar } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-// import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card"
+import ActorCard from "../ActorCard";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/utils/appStore";
+import { addCast } from "@/utils/movieSlice";
 
 const MovieDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [movie, setMovie] = useState<Movie | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const [cast, setCast] = useState<Cast | null>(null);
+//   const [cast, setCast] = useState<Cast | null>(null);
+    const cast = useSelector((state: RootState)=> state.movie.cast) || []
+    const dispatch = useDispatch()
 
   const fetchData = async () => {
     try {
@@ -38,7 +43,9 @@ const MovieDetail: React.FC = () => {
         `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${Api_key}&language=en-US`
       );
       const json = await data.json();
-      setCast(json.cast);
+    //   setCast(json.cast);
+      dispatch(addCast(json.cast))
+    //   console.log(json.cast);
       console.log(cast);
     } catch (error) {
       console.log(error);
@@ -53,7 +60,7 @@ const MovieDetail: React.FC = () => {
     if (!movie) return <div>Loading...</div>;
     return (
       <div className="relative">
-        <div className="absolute inset-0 z-10">
+        <div className="absolute inset-0 z-10 ">
           <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/80 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-r from-zinc-900/50 via-transparent to-transparent" />
         </div>
@@ -70,11 +77,9 @@ const MovieDetail: React.FC = () => {
           />
         </div>
 
-        {/* Movie Info Overlay */}
         <div className="absolute bottom-0 left-0 right-0 z-20">
           <div className="mx-auto max-w-7xl px-4 pb-8">
-            <div className="flex flex-col gap-6 md:flex-row md:items-end md:gap-8">
-              {/* Poster with shadow for better visibility */}
+            <div className="flex flex-col gap-6 md:flex-row md:items-end md:gap-8 ">
               <div className="relative w-32 shrink-0 md:w-40">
                 <div className="absolute -inset-4 bg-gradient-to-r from-zinc-900 to-transparent rounded-lg" />
                 <Card className="relative overflow-hidden border-0">
@@ -91,7 +96,6 @@ const MovieDetail: React.FC = () => {
                 </Card>
               </div>
 
-              {/* Info */}
               <div className="flex-1 relative">
                 <h1 className="mb-2 text-3xl font-bold text-white md:text-4xl">
                   {movie.title}
@@ -152,6 +156,14 @@ const MovieDetail: React.FC = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-xl font-semibold text-white">Overview</h2>
           {movie && <p className="text-zinc-300">{movie.overview}</p>}
+        </section>
+        <section>
+          <h2 className="mb-6 text-xl font-semibold text-white">Cast</h2>
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+            {cast && cast.map((actor) => (
+              <ActorCard key={actor.id} actor={actor} />
+            ))}
+          </div>
         </section>
       </div>
     </div>

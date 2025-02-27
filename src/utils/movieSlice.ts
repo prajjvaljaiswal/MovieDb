@@ -1,11 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Movie } from "@/type/movie";
+import { Movie, Cast } from "@/type/movie";
 
 interface MovieState {
     nowPlayingMovies: Movie[];
     popularMovies: Movie[];
     topRatedMovies: Movie[];
     upComingMovies: Movie[];
+    cast: Cast[]
   }
   
   const initialState: MovieState = {
@@ -13,6 +14,7 @@ interface MovieState {
     popularMovies: [],
     topRatedMovies: [],
     upComingMovies: [],
+    cast: []
   };
 
 const movieSlice = createSlice(
@@ -31,11 +33,14 @@ const movieSlice = createSlice(
             },
             addUpComingMovies(state, action){
                 state.upComingMovies = action.payload;
+            },
+            addCast(state, action){
+                state.cast = action.payload;
             }
         }
     }
 )
 
-export const {addMovies, addPopularMovies, addTopRatedMovies, addUpComingMovies} = movieSlice.actions;
+export const {addMovies, addPopularMovies, addTopRatedMovies, addUpComingMovies, addCast} = movieSlice.actions;
 
 export default movieSlice.reducer;
