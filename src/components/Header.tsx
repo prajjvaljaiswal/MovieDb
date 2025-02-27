@@ -9,9 +9,9 @@ export const Header = () => {
   return (
     <header className="border-b border-zinc-800">
     <div className="container mx-auto px-4">
-      <div className="flex h-16 items-center justify-between text-xl font-bold text-white">
+      <div className="flex h-16 items-center justify-between">
         
-        <Link to="/">MovieDb</Link>
+        <Link className='text-xl font-bold text-white' to="/">MovieDb</Link>
 
         <nav className="hidden space-x-6 md:flex">
           <Link to="/popular" className="text-zinc-400 hover:text-white">
