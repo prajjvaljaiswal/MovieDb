@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Populer from "./components/pages/populer.js";
 import TopRated from "./components/pages/topRated.js";
 import Upcoming from "./components/pages/upcoming.js";
+import MovieDetail from "./components/pages/movieDetail.js";
 import Error from "./components/pages/error.js";
 import { Provider } from "react-redux";
 import appStore from "./utils/appStore.js";
@@ -40,7 +41,11 @@ const router = createBrowserRouter([
     path: "/upcoming",
     element: <Upcoming />,
     errorElement: <Error />
-  },
+  },{
+    path: "/movie/:id",
+    element: <MovieDetail/>,
+    errorElement: <Error/>
+  }
 ]);
 
 createRoot(document.getElementById("root")!).render(

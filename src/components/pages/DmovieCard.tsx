@@ -1,17 +1,28 @@
 import React from "react";
+import { Movie } from "@/type/movie";
+import { useNavigate } from "react-router-dom";
 
+
+// type movie = {
+//   id: number;
+//   title?: string;
+//   poster_path?: string;
+//   vote_average?: number;
+// };
 interface MovieProps {
-  movie: {
-    id: number;
-    title?: string;
-    poster_path?: string;
-    vote_average?: number;
-  };
+  movie: Movie
 }
 
 const MovieCard: React.FC<MovieProps> = ({ movie }) => {
+  const navigate = useNavigate()
+  const handleMovieClick = () => {
+    console.log(`Movie clicked: ${movie.id}`)
+    navigate(`/movie/${movie.id}`);
+  }
   return (
-    <div className="flex flex-col gap-2 cursor-pointer">
+    <div key={movie.id}
+    onClick={() => handleMovieClick()}
+    className="group flex cursor-pointer flex-col gap-2">
       <div className="aspect-[2/3] overflow-hidden rounded-lg">
         <img
           src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
