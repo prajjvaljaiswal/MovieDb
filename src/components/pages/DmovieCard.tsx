@@ -9,7 +9,6 @@ interface MovieProps {
 const MovieCard: React.FC<MovieProps> = ({ movie }) => {
   const navigate = useNavigate()
   const handleMovieClick = () => {
-    console.log(`Movie clicked: ${movie.id}`)
     navigate(`/movie/${movie.id}`);
   }
   return (

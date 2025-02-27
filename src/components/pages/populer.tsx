@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 import { Movie } from "@/type/movie";
 
 const Populer: React.FC = () => {
-  console.log("popular");
   usePopularMovies();
 
   const movies: Movie[] = useSelector(

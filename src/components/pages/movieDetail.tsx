@@ -10,6 +10,7 @@ import ActorCard from "../ActorCard";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/utils/appStore";
 import { addCast } from "@/utils/movieSlice";
+import Loading from "./Loading";
 
 const MovieDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -28,7 +29,6 @@ const MovieDetail: React.FC = () => {
       );
       const json = await data.json();
       setMovie(json);
-      console.log(json);
     } catch (error) {
       console.log(error);
     } finally {
@@ -43,10 +43,7 @@ const MovieDetail: React.FC = () => {
         `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${Api_key}&language=en-US`
       );
       const json = await data.json();
-    //   setCast(json.cast);
       dispatch(addCast(json.cast))
-    //   console.log(json.cast);
-      console.log(cast);
     } catch (error) {
       console.log(error);
     }
@@ -54,10 +51,15 @@ const MovieDetail: React.FC = () => {
   useEffect(() => {
     fetchData();
     fetchCast();
+
+    return (()=>{
+        setMovie(null)
+        setLoading(!loading)
+    })
   }, []);
 
   const PrimaryPannel: React.FC = () => {
-    if (!movie) return <div>Loading...</div>;
+    if (!movie) return <Loading/>;
     return (
       <div className="relative">
         <div className="absolute inset-0 z-10 ">
@@ -150,7 +152,7 @@ const MovieDetail: React.FC = () => {
   return (
     <div className="min-h-screen bg-zinc-900 text-white">
       <Header />
-      {loading && <div>Loading...</div>}
+      {loading && <Loading/>}
       <PrimaryPannel />
       <div className="mx-auto max-w-7xl px-4 py-8">
         <section className="mb-12">
