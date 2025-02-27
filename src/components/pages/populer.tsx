@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import usePopularMovies from "@/hooks/usePopularMovies";
 import { Header } from "../Header";
 import MovieCard from "@/components/pages/DmovieCard";
@@ -8,10 +8,7 @@ import { Movie } from "@/type/movie";
 
 const Populer: React.FC = () => {
   console.log("popular");
-
-  useEffect(() => {
-    usePopularMovies();
-  }, []);
+  usePopularMovies();
 
   const movies: Movie[] = useSelector(
     (state: RootState) => state.movie.popularMovies

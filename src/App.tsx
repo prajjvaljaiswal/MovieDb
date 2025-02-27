@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+
 import { Header } from "./components/Header"
 import MovieCard from "./components/pages/DmovieCard"
 import usePopularMovies from "./hooks/usePopularMovies"
@@ -8,9 +8,7 @@ import { Movie } from "./type/movie";
 
 
 function App() {
-  useEffect(() => {
-    usePopularMovies();
-  }, []);
+  usePopularMovies();
 
   const movies: Movie[] = useSelector(
     (state: RootState) => state.movie.popularMovies
